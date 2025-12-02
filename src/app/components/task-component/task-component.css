@@ -1,0 +1,329 @@
+/* Estilos generales para el contenedor principal */
+.task-management {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #f4f7f6;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+.task-management h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2em;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+}
+
+/* --- Sección del Formulario de Tareas --- */
+
+.task-form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.task-form-container h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+}
+
+.task-form-container form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* Espacio entre los grupos de formulario */
+    align-items: flex-end;
+    /* Alinea los elementos del formulario al final */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 45%;
+    /* Permite que ocupe casi la mitad del contenedor en pantallas grandes */
+    min-width: 200px;
+    /* Ancho mínimo para evitar que se colapsen demasiado */
+}
+
+.form-group.full-width {
+    flex: 1 1 100%;
+    /* Ocupa todo el ancho para la descripción */
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+    width: 100%;
+    /* Asegura que los campos llenen su contenedor flex */
+    box-sizing: border-box;
+    /* Incluye padding y border en el ancho/alto */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.task-form-container button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #28a745;
+    /* Verde para el botón de acción */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    align-self: flex-end;
+    /* Alinea el botón al final de la fila */
+}
+
+.task-form-container button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.task-form-container button[type="submit"]:active {
+    transform: translateY(1px);
+}
+
+
+/* --- Separador (HR) --- */
+.task-management>hr {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/* --- Cabecera de la Lista de Tareas (Grid) --- */
+
+.task-header {
+    /* CAMBIO: Se añade 1.5fr para la columna de Acciones (Borrar) */
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr 4fr 1.5fr;
+    /* Distribución de columnas actualizada */
+    gap: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.task-header .header-item {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.task-header .header-item.actions {
+    text-align: center;
+    /* Alinea el encabezado de acciones */
+}
+
+/* --- Lista de Tareas (Grid) --- */
+
+.task-list {
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+.task-item {
+    /* CAMBIO: Se añade 1.5fr para la columna de Acciones (Borrar) */
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 1fr 4fr 1.5fr;
+    /* Debe coincidir con task-header */
+    gap: 10px;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.task-item:hover {
+    background-color: #f9f9f9;
+}
+
+.task-detail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+}
+
+.task-detail.sequence {
+    font-weight: bold;
+    color: #777;
+}
+
+.task-detail.name {
+    font-weight: 600;
+}
+
+.task-detail.actions {
+    text-align: center;
+    /* Centra el botón dentro de la celda */
+}
+
+/* --- Estilo del Botón de Borrar (Nuevo) --- */
+.delete-btn {
+    padding: 6px 10px;
+    background-color: #dc3545;
+    /* Rojo para Borrar */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+    white-space: nowrap;
+    /* Evita que el texto del botón se rompa */
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.delete-btn:active {
+    transform: translateY(1px);
+}
+
+/* --- Insignias de Prioridad --- */
+
+.priority-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: white;
+}
+
+.priority-badge.alta {
+    background-color: #dc3545;
+    /* Rojo */
+}
+
+.priority-badge.media {
+    background-color: #ffc107;
+    /* Amarillo */
+    color: #333;
+    /* Texto oscuro para el amarillo */
+}
+
+.priority-badge.baja {
+    background-color: #17a2b8;
+    /* Cyan */
+}
+
+/* --- Tareas Vacías --- */
+.no-tasks {
+    text-align: center;
+    padding: 20px;
+    color: #999;
+    font-style: italic;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- Media Queries para Responsividad (Actualizadas) --- */
+@media (max-width: 768px) {
+    .task-management {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .task-form-container form {
+        flex-direction: column;
+        /* Apila los elementos del formulario en móviles */
+        gap: 15px;
+    }
+
+    .form-group,
+    .form-group.full-width {
+        flex: 1 1 100%;
+        min-width: auto;
+    }
+
+    .task-form-container button[type="submit"] {
+        width: 100%;
+        align-self: center;
+    }
+
+    .task-header,
+    .task-item {
+        /* CAMBIO: Nueva distribución para móvil: Tarea | Prioridad | Acciones. Se oculta # y Descripción. */
+        grid-template-columns: 3fr 1.5fr 2fr;
+        padding: 10px;
+    }
+
+    .task-header .header-item.sequence,
+    .task-item .task-detail.sequence {
+        display: none;
+        /* Oculta la columna de secuencia */
+    }
+
+    .task-header .header-item.description,
+    .task-item .task-detail.description {
+        display: none;
+        /* Oculta la descripción en móvil/tablet intermedio */
+    }
+
+    .task-detail {
+        white-space: normal;
+        /* Permite que el texto se envuelva */
+    }
+}
+
+@media (max-width: 480px) {
+
+    .task-header,
+    .task-item {
+        /* CAMBIO: Más compacto: Tarea | Prioridad | Acciones */
+        grid-template-columns: 2fr 1fr 1.5fr;
+    }
+
+    .task-header .header-item.description,
+    .task-item .task-detail.description {
+        display: none;
+        /* Oculta la descripción en el móvil más pequeño */
+    }
+}

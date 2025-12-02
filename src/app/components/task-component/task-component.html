@@ -1,0 +1,66 @@
+<div class="task-management">
+    <h2>Gestión de Tareas</h2>
+
+    <div class="task-form-container">
+        <h3>Crear Nueva Tarea</h3>
+
+        <form (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input id="name" type="text" [(ngModel)]="newTask.name" name="name" placeholder="Ej: Pagar facturas"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Prioridad:</label>
+                <select id="priority" [(ngModel)]="newTask.priority" name="priority" required>
+                    <option value="" disabled>Selecciona una prioridad</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Baja">Baja</option>
+                </select>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="description">Descripción:</label>
+                <textarea id="description" [(ngModel)]="newTask.description" name="description"
+                    placeholder="Detalles de la tarea..."></textarea>
+            </div>
+
+            <button type="submit">
+                Añadir Tarea
+            </button>
+
+        </form>
+    </div>
+
+    <div class="task-header">
+        <div class="header-item sequence">#</div>
+        <div class="header-item name">Tarea</div>
+        <div class="header-item priority">Prioridad</div>
+        <div class="header-item description">Descripción</div>
+    </div>
+
+    <div class="task-list">
+        @for (task of tasks; track $index) {
+        <div class="task-item">
+            <div class="task-detail sequence">{{ task.sequence }}</div>
+            <div class="task-detail name">{{ task.name }}</div>
+            <div class="task-detail priority">
+                <span class="priority-badge" [ngClass]="task.priority | lowercase">{{ task.priority }}</span>
+            </div>
+            <div class="task-detail description">{{ task.description }}</div>
+
+            <div class="task-detail actions">
+                <button class="delete-btn" (click)="deleteTask(task.sequence)">
+                    🗑️ Borrar
+                </button>
+            </div>
+        </div>
+        }
+        @empty {
+        <div class="no-tasks">No hay tareas pendientes. ¡Añade una nueva!</div>
+        }
+    </div>
+</div>
